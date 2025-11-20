@@ -1,6 +1,7 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import * as bcrypt from 'bcrypt';
 import { RolesEntity } from "src/roles/roles.entity";
+import { AppointmentsEntity } from "src/appointments/appointments.entity";
 
 @Entity()
 export class UsersEntity {
@@ -36,4 +37,7 @@ export class UsersEntity {
     @ManyToMany(() => RolesEntity, roles => roles.users)
     @JoinTable()
     roles: RolesEntity[]
+
+    @OneToMany(() => AppointmentsEntity, appointments => appointments.patient)
+    appointments: AppointmentsEntity[];
 }

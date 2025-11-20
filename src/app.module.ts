@@ -8,6 +8,8 @@ import { UsersEntity } from './users/users.entity';
 import { RolesEntity } from './roles/roles.entity';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { AppointmentsModule } from './appointments/appointments.module';
+import { AppointmentsController } from './appointments/appointments.controller';
 
 @Module({
   imports: [UsersModule, RolesModule,
@@ -26,8 +28,9 @@ import { ConfigModule } from '@nestjs/config';
      synchronize: true
    }),
     AuthModule,
+    AppointmentsModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, AppointmentsController],
   providers: [AppService],
 })
 export class AppModule {}
